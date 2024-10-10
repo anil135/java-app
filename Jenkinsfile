@@ -16,6 +16,15 @@ pipeline {
             }
         }
 
+        stage('Install JDK 17'){
+            steps{
+                // install jdk 17
+
+                sh 'sudo apt update'
+                sh 'sudo apt install -y openjdk-17-jdk '
+
+            }
+        }
 
         stage('Build') {
                     steps {
