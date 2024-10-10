@@ -4,8 +4,6 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'anil135/java-app-microservice'
         DOCKER_CREDENTIALS_ID = 'docker-repo-credentials' // Docker credentials stored in Jenkins
-        DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/test'
-        DB_CONTAINER_NAME = 'jenkins_db'
     }
 
     stages {
@@ -62,19 +60,9 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
-            steps {
-                // Remove PostgreSQL container
-                sh "docker stop ${DB_CONTAINER_NAME} && docker rm ${DB_CONTAINER_NAME}"
-            }
-        }
     }
 
     post {
-        always {
-            // Cleanup Docker resources if necessary
-            sh 'docker system prune -f'
-        }
         success {
             echo 'Pipeline completed successfully.'
         }
