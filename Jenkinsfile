@@ -26,18 +26,20 @@ pipeline {
             }
         }
         stage('Install maven'){
-            stepa{
+
+            steps{
                 // Install maven to build
                 sh 'sudo apt install -y maven'
             }
         }
+
         stage('Build') {
-                    steps {
-                        // Build the Java application using Maven or Gradle
-                        sh 'mvn clean package'  // For Maven
-                        // sh './gradlew build'    // For Gradle
-                    }
-                }
+            steps {
+                // Build the Java application using Maven or Gradle
+                sh 'mvn clean package'  // For Maven
+                // sh './gradlew build'    // For Gradle
+            }
+        }
 
 
         stage('Build Docker Image') {
