@@ -25,7 +25,12 @@ pipeline {
 
             }
         }
-
+        stage('Install maven'){
+            stepa{
+                // Install maven to build
+                sh 'sudo apt install -y maven'
+            }
+        }
         stage('Build') {
                     steps {
                         // Build the Java application using Maven or Gradle
